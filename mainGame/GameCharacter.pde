@@ -8,7 +8,7 @@ class GameCharacter
   float theta = 0.0f;
   float p;
   float halfp;
-  float speed = 5.0f;
+  float speed = 7.0f;
   
   
   GameCharacter()  //constructor
@@ -26,7 +26,6 @@ class GameCharacter
     right = new PVector(1, 0);
     
     this.p = p; 
-    //this.halfp = p * 0.5f;
-    //this.theta = 0.0f;
+
   }
 }

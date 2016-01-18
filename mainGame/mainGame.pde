@@ -8,6 +8,7 @@ void setup()
 
 Player player;
 
+ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 
 boolean[] keys = new boolean[512];
 
@@ -28,5 +29,12 @@ void draw()
   
   player.render();
   player.update();
+  
+    for(Bullet b: bullets)
+  {
+    
+    b.update();
+    b.render();
+  }
   
 }
