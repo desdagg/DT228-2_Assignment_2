@@ -27,5 +27,6 @@ void draw()
   background(150);
   
   player.render();
+  player.update();
   
 }

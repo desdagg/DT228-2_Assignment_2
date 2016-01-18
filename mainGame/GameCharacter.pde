@@ -2,6 +2,9 @@ class GameCharacter
 {
   PVector pos;
   PVector forward;
+  PVector backward;
+  PVector left;
+  PVector right;
   float theta = 0.0f;
   float p;
   float halfp;
@@ -18,8 +21,12 @@ class GameCharacter
   {
     pos = new PVector(x, y);
     forward = new PVector(0, -1);
+    backward = new PVector(0, 1);
+    left = new PVector(-1, 0);
+    right = new PVector(1, 0);
+    
     this.p = p; 
-    this.halfp = p * 0.5f;
-    this.theta = 0.0f;
+    //this.halfp = p * 0.5f;
+    //this.theta = 0.0f;
   }
 }
