@@ -30,29 +30,41 @@ class Player extends GameCharacter
     right.y = sin(theta);
     right.mult(speed);
     
+    
     //key bindings for movement
     if (keys['W'])
     {
-      pos.add(forward);
+      if(pos.y > 0)
+      {
+        pos.add(forward);
+      }
     }
     if (keys['S'])
     {
-      pos.add(backward);
+      if(pos.y < height)
+      {
+        pos.add(backward);
+      }
     }
     if (keys['A'])
     {
+      if(pos.x > 0)
+      {
       pos.add(left);
+      }
     }
     if (keys['D'])
     {
+      if(pos.x < width)
+      {
       pos.add(right);
+      }
     }
-    
     if (mousePressed)
     {
       Bullet bullet = new Bullet();
       bullet.pos.x = pos.x;
-      print(pos);
+      //print(pos);
       bullet.pos.y = pos.y;
       bullet.theta = angle+1.57;
       bullets.add(bullet);
@@ -70,8 +82,9 @@ class Player extends GameCharacter
     float dir = (angle - targetAngle) / TWO_PI;
     dir -= round( dir );
     dir *= TWO_PI;
-    
+   
     targetAngle += dir * easing;
+   
     //drawing the player
     pushMatrix();
     translate(pos.x, pos.y);
@@ -89,7 +102,8 @@ class Player extends GameCharacter
     //player head
     ellipse(p,p,28,28);*/
     
-          stroke(0);
+    println(pos);
+    stroke(0);
     fill(255, 0, 0);
     //player shoulders
     rect(p-7, p+10, 14, 15);
