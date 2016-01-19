@@ -31,6 +31,17 @@ void draw()
   player.render();
   player.update();
   
+  int i;
+  for (i=0 ; i<20 ; i++)
+  {
+    for(Enemy e: enemies)
+    {
+      e.render();
+    }
+    i++;
+     //delay(3000);
+  }
+  
     for(Bullet b: bullets)
   {
     

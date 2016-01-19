@@ -61,6 +61,14 @@ class Player extends GameCharacter
       pos.add(right);
       }
     }
+    
+    if(keys['P'])
+    {
+      Enemy enemy= new Enemy();
+      enemies.add(enemy);
+    }
+    
+    
     if (mousePressed)
     {
       Bullet bullet = new Bullet();
