@@ -9,6 +9,7 @@ class Bullet extends GameCharacter
     stroke(255);
     pushMatrix();
     translate(pos.x, pos.y);
+    println(player.p);
     rotate(theta);
     line(0, -5, 0, 5);
     popMatrix();    

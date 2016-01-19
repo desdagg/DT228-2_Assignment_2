@@ -7,8 +7,10 @@ class Enemy extends GameCharacter
   Enemy()
   {
     
-    super(width * 0.5f, height  * 0.5f, 50);     
+    super(width * 0.5f, height  * 0.5f);     
     println("In Enemy Default Constructor");
   }
+  
+  
   
 }

@@ -7,7 +7,8 @@ class Player extends GameCharacter
   
   Player()
   {
-    super(width * 0.5f, height  * 0.5f, 50);     
+    super(width * 0.5f, height  * 0.5f);   
+   // println("p is " + p);
     println("In Player Default Constructor");
   }
   
@@ -64,7 +65,6 @@ class Player extends GameCharacter
     {
       Bullet bullet = new Bullet();
       bullet.pos.x = pos.x;
-      //print(pos);
       bullet.pos.y = pos.y;
       bullet.theta = angle+1.57;
       bullets.add(bullet);
@@ -90,19 +90,9 @@ class Player extends GameCharacter
     translate(pos.x, pos.y);
 
     rotate( targetAngle );
-    /*stroke(0);
-    fill(255, 0, 0);
-    //player shoulders
-    rect(p-7, p+10, 14, 15);
-    rect(p-7, p-10, 14, -15);
-    fill(0);
-    //player hand
-    rect(p+7, p+10, 14, 15);
-    fill(180,150,0);
-    //player head
-    ellipse(p,p,28,28);*/
+
     
-    println(pos);
+    //println(pos);
     stroke(0);
     fill(255, 0, 0);
     //player shoulders
@@ -113,6 +103,7 @@ class Player extends GameCharacter
     fill(0);
     //player gun
     rect(p+18, p-3, 15, 6);
+    //gun muzzel
     fill(80);
     rect(p+33, p-2, 5, 4);
     
