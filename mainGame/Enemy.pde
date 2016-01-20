@@ -2,7 +2,7 @@ class Enemy extends GameCharacter
 {
   float angle = 0;
   float targetAngle = 0;
-  float easing = 0.5f;
+  float easing = 0.05f;
   float xVal = random(0, width);
   float yVal = random(0, height);
   Enemy()
@@ -21,7 +21,7 @@ class Enemy extends GameCharacter
   void render()
   {
     //enemy angle facing the player position
-    angle = atan2(pos.y, pos.x);
+    angle = atan2(yVal - player.pos.y, xVal - player.pos.x);
     
     float dir = (angle - targetAngle) / TWO_PI;
     dir -= round( dir );

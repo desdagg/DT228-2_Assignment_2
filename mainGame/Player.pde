@@ -84,6 +84,7 @@ class Player extends GameCharacter
   
   void render()
   {
+    println("rendering");
     //player angle facing the mouse position
     angle = atan2( mouseY - pos.y, mouseX - pos.x );
     
