@@ -18,9 +18,9 @@ class Enemy extends GameCharacter
   {
 
     //println("angle is" + angle);
-    forward.x = sin(angle);
-    forward.y = -cos(angle);
-    forward.mult(speed);
+    forward.x = -cos(angle);
+    forward.y = -sin(angle);
+    forward.mult(speed*0.3);
 
          if (keys['L'])
     {
