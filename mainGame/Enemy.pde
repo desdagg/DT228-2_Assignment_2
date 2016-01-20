@@ -5,23 +5,41 @@ class Enemy extends GameCharacter
   float easing = 0.05f;
   float xVal = random(0, width);
   float yVal = random(0, height);
+
   Enemy()
   {
-    
-    super(width * 0.5f, height  * 0.5f);     
+    super(width * 0.5f, height  * 0.5f);    
+    pos.x = xVal;
+    pos.y = yVal;
     println("In Enemy Default Constructor");
   }
   
   void update()
   {
-    
+
+    //println("angle is" + angle);
+    forward.x = sin(angle);
+    forward.y = -cos(angle);
+    forward.mult(speed);
+
+         if (keys['L'])
+    {
+      println("value of enemy" + xVal +pos);
+      if(pos.y > 0)
+      {
+        
+        pos.add(forward);
+      }
+    }
+      
 
   }
   
   void render()
   {
+
     //enemy angle facing the player position
-    angle = atan2(yVal - player.pos.y, xVal - player.pos.x);
+    angle = atan2(pos.y - player.pos.y, pos.x - player.pos.x);
     
     float dir = (angle - targetAngle) / TWO_PI;
     dir -= round( dir );
@@ -30,7 +48,7 @@ class Enemy extends GameCharacter
     targetAngle += dir * easing;
     
     pushMatrix();
-    translate(xVal, yVal);
+    translate(pos.x, pos.y);
     rotate( targetAngle );
     //translate(pos.x, pos.y);
     //enemy shoulders

@@ -12,7 +12,7 @@ ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
 boolean[] keys = new boolean[512];
-
+int i;
 void keyPressed()
 {
   keys[keyCode] = true;
@@ -31,16 +31,28 @@ void draw()
   player.render();
   player.update();
   
-  int i;
-  for (i=0 ; i<20 ; i++)
+  
+  if(keys['P'])
   {
-    for(Enemy e: enemies)
+    Enemy enemy= new Enemy();
+    enemies.add(enemy);
+    /*for (i = 0 ; i<20 ; i++)
     {
-      e.render();
-    }
-    i++;
-     //delay(3000);
+      if(i < 20)
+      {
+        Enemy enemy= new Enemy();
+        enemies.add(enemy);
+      }
+    }*/
   }
+  
+  
+for(Enemy e: enemies)
+      {
+        e.render();
+        e.update();
+      }
+
   
     for(Bullet b: bullets)
   {

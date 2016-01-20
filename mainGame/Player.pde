@@ -62,11 +62,7 @@ class Player extends GameCharacter
       }
     }
     
-    if(keys['P'])
-    {
-      Enemy enemy= new Enemy();
-      enemies.add(enemy);
-    }
+
     
     
     if (mousePressed)
@@ -84,7 +80,7 @@ class Player extends GameCharacter
   
   void render()
   {
-    println("rendering");
+    //println("rendering");
     //player angle facing the mouse position
     angle = atan2( mouseY - pos.y, mouseX - pos.x );
     
