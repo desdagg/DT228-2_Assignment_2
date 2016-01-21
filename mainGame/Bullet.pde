@@ -1,7 +1,8 @@
 
 class Bullet extends GameCharacter
 {
-  
+  float xCor;
+  float yCor;
     
   void render()
   {
@@ -17,11 +18,18 @@ class Bullet extends GameCharacter
   
   void update()
   {
-  
+  xCor = pos.x;
+  yCor = pos.y;
+  //println(xCor);
     forward.x = sin(theta);
     forward.y = - cos(theta);
       
     forward.mult(speed*2);
     pos.add(forward);
+  }
+  
+  void display()
+  {
+    println("bullet x pos is" + pos.x);
   }
 }

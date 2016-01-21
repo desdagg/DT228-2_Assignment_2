@@ -1,4 +1,4 @@
-class Enemy extends GameCharacter
+class BossEnemy extends GameCharacter
 {
   float angle = 0;
   float targetAngle = 0;
@@ -6,7 +6,7 @@ class Enemy extends GameCharacter
   float xVal = random(0, width);
   float yVal = random(0, height);
 
-  Enemy()
+  BossEnemy()
   {
     super(width * 0.5f, height  * 0.5f);    
     pos.x = xVal;
@@ -20,7 +20,7 @@ class Enemy extends GameCharacter
     //println("angle is" + angle);
     forward.x = -cos(angle);
     forward.y = -sin(angle);
-    forward.mult(speed*0.3);
+    forward.mult(speed*0.7);
 
          if (keys['L'])
     {
@@ -33,17 +33,11 @@ class Enemy extends GameCharacter
     }
       pos.add(forward);
 
-
-   /* if(pos.x == bullet.pos.x || pos.y == Bullet.pos.y)
-    {
-      println("thats a hit");
-    }*/
-    
   }
   
   void render()
   {
-println(pos.x);
+
     //enemy angle facing the player position
     angle = atan2(pos.y - player.pos.y, pos.x - player.pos.x);
     
@@ -59,14 +53,14 @@ println(pos.x);
     //translate(pos.x, pos.y);
     //enemy shoulders
     stroke(0);
-    fill(145,200,0);
+    fill(50);
     rect(p-7, p+10, 14, 15);
     rect(p-7, p-10, 14, -15);
     //enemy hands
     rect(p-27, p+25, 20, -15);
     rect(p-27, p-10, 20, -15);
     //enemy head
-    fill(145, 155, 0);
+    fill(0);
     ellipse(p,p,28,28); 
     popMatrix();
   }
