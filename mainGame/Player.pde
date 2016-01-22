@@ -4,6 +4,8 @@ class Player extends GameCharacter
   float angle = 0;
   float targetAngle = 0;
   float easing = 0.5f;
+  boolean canShoot = true;
+  int delay = 0;
   
   Player()
   {
@@ -65,15 +67,16 @@ class Player extends GameCharacter
 
     
     //create bullets when mouse pressed
-    if (mousePressed)
+    /*if (mousePressed)
     {
       //ad a limit to amount of bullets creatable
       int b = 0;
-      if(bullets.size() < 40000)
+      if(bullets.size() < 10)
       {
         Bullet bullet = new Bullet();
         bullet.pos.x = pos.x;
         bullet.pos.y = pos.y;
+        //angling the bullet toward the mouse
         bullet.theta = angle+1.57;
         bullets.add(bullet);
         b++;
@@ -81,9 +84,32 @@ class Player extends GameCharacter
       else
       {
         //remove bullets from arraylist if too many
-       // bullets.remove(b);
+        bullets.remove(b);
       }
-    }
+    }*/
+    
+    //test shooting version
+    //
+    //hand gun implementation --- hopefully more guns in future updates
+    //
+    if (mousePressed && canShoot)
+    {
+      //ad a limit to amount of bullets creatable
+        Bullet bullet = new Bullet();
+        bullet.pos.x = pos.x;
+        bullet.pos.y = pos.y;
+        //angling the bullet toward the mouse
+        bullet.theta = angle+1.57;
+        bullets.add(bullet);
+        canShoot = false;
+        delay = 0;
+      }
+      delay++;
+      if(delay >= 20)
+      {
+        canShoot = true;
+      }
+    
     
   }
 

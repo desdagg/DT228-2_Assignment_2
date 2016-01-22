@@ -72,20 +72,27 @@ class Enemy extends GameCharacter
     rect(p-27, p-10, 20, -15);
     //enemy head
     fill(145, 155, 0);
-    ellipse(p,p,28,28); 
+    ellipse(p,p,28,28);
+    
+    
+    
     //hitbox
     noFill();
-    rect(p-27, p-25, 34, 50);
+    //rect(p-27, p-25, 34, 50);
     popMatrix();
   }
   
+  //using a boolean this will iterate through all the bullets in its arraylist
+  //and check if any are touching an enemy, if they are the function will return false
   boolean enemyAlive()
   {
     for (int i = 0 ; i<bullets.size() ; i++)
     {
       Bullet b = (Bullet) bullets.get(i);
+      //checking the coordinates of the bullet
       if(b.xCor > (pos.x -17) && b.xCor < (pos.x +17) && b.yCor > (pos.y -25) && b.yCor < (pos.y + 25))
       {
+        //removing the bullet from the arraylist
         bullets.remove(i);
         return false;
       }
