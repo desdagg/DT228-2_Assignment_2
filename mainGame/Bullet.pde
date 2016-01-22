@@ -3,16 +3,18 @@ class Bullet extends GameCharacter
 {
   float xCor;
   float yCor;
+  int col = 255;
     
   void render()
   {
     // draw the bullet
-    stroke(255);
+    
+    stroke(col);
     pushMatrix();
     translate(pos.x, pos.y);
     //println(player.p);
     rotate(theta);
-    line(0, -5, 0, 5);
+    line(0, -30, 0, -5);
     popMatrix();    
   }
   
@@ -24,12 +26,26 @@ class Bullet extends GameCharacter
     forward.x = sin(theta);
     forward.y = - cos(theta);
       
-    forward.mult(speed*2);
+    forward.mult(speed*5);
     pos.add(forward);
   }
   
-  void display()
+  float displayx()
   {
-    println("bullet x pos is" + pos.x);
+    //println("bullet x pos is" + pos.x);
+    return (xCor);
+  }
+  
+  float displayy()
+  {
+    return (yCor);
+  }
+  
+  void removebullet()
+  {
+    col = 150;
+   // pos.x = 0;
+   // pos.y = 0;
+    
   }
 }

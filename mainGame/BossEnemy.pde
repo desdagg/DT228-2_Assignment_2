@@ -61,7 +61,10 @@ class BossEnemy extends GameCharacter
     rect(p-27, p-10, 20, -15);
     //enemy head
     fill(0);
-    ellipse(p,p,28,28); 
+    ellipse(p,p,28,28);
+    //hitbox
+    noFill();
+    rect(p-27, p-25, 34, 50);
     popMatrix();
   }
 

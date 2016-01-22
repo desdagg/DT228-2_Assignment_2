@@ -6,6 +6,11 @@ class Enemy extends GameCharacter
   float xVal = random(0, width);
   float yVal = random(0, height);
 
+  //
+  //you need to make a hitbox
+  //
+  
+  
   Enemy()
   {
     super(width * 0.5f, height  * 0.5f);    
@@ -43,7 +48,7 @@ class Enemy extends GameCharacter
   
   void render()
   {
-println(pos.x);
+    //println(pos.x);
     //enemy angle facing the player position
     angle = atan2(pos.y - player.pos.y, pos.x - player.pos.x);
     
@@ -68,7 +73,31 @@ println(pos.x);
     //enemy head
     fill(145, 155, 0);
     ellipse(p,p,28,28); 
+    //hitbox
+    noFill();
+    rect(p-27, p-25, 34, 50);
     popMatrix();
+  }
+  
+  boolean enemyAlive()
+  {
+    for (int i = 0 ; i<bullets.size() ; i++)
+    {
+      Bullet b = (Bullet) bullets.get(i);
+      if(b.xCor > (pos.x -17) && b.xCor < (pos.x +17) && b.yCor > (pos.y -25) && b.yCor < (pos.y + 25))
+      {
+        bullets.remove(i);
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  void removeEnemy()
+  {
+    
+    
+    
   }
 
 }

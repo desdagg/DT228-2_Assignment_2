@@ -64,19 +64,31 @@ class Player extends GameCharacter
     
 
     
-    
+    //create bullets when mouse pressed
     if (mousePressed)
     {
-      Bullet bullet = new Bullet();
-      bullet.pos.x = pos.x;
-      bullet.pos.y = pos.y;
-      bullet.theta = angle+1.57;
-      bullets.add(bullet);
-      
+      //ad a limit to amount of bullets creatable
+      int b = 0;
+      if(bullets.size() < 40000)
+      {
+        Bullet bullet = new Bullet();
+        bullet.pos.x = pos.x;
+        bullet.pos.y = pos.y;
+        bullet.theta = angle+1.57;
+        bullets.add(bullet);
+        b++;
+      }
+      else
+      {
+        //remove bullets from arraylist if too many
+       // bullets.remove(b);
+      }
     }
     
   }
+
   
+ 
   
   void render()
   {
