@@ -22,7 +22,7 @@ class Bullet extends GameCharacter
   {
   xCor = pos.x;
   yCor = pos.y;
-  //println(xCor);
+  
     forward.x = sin(theta);
     forward.y = - cos(theta);
       
@@ -41,6 +41,9 @@ class Bullet extends GameCharacter
     return (yCor);
   }
   
+  //
+  //dont really need this anymore
+  //
   void removebullet()
   {
     col = 150;

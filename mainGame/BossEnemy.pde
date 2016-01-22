@@ -3,15 +3,38 @@ class BossEnemy extends GameCharacter
   float angle = 0;
   float targetAngle = 0;
   float easing = 0.05f;
-  float xVal = random(0, width);
-  float yVal = random(0, height);
+  int ran = int(random(1,5));
+  float xVal = 0;
+  float yVal = 0;
 
   BossEnemy()
   {
-    super(width * 0.5f, height  * 0.5f);    
+    super(width * 0.5f, height  * 0.5f);   
+    
+    if (ran == 1)
+    {
+      xVal = random(-70, 20);
+      yVal = random(0, height);
+    }
+    if (ran == 2)
+    {
+      xVal = random(0, width);
+      yVal = random(-70, 20);
+    }
+    if (ran ==3)
+    {
+      xVal = random(width +20, width +70);
+      yVal = random(0, height);
+    }
+    if (ran == 4)
+    {
+      xVal = random(0, width);
+      yVal = random(height +20, height +70);
+    } 
+    
     pos.x = xVal;
     pos.y = yVal;
-    println("In Enemy Default Constructor");
+    println("In BossEnemy Default Constructor");
   }
   
   void update()
@@ -63,9 +86,25 @@ class BossEnemy extends GameCharacter
     fill(0);
     ellipse(p,p,28,28);
     //hitbox
-    noFill();
-    rect(p-27, p-25, 34, 50);
+    //noFill();
+    //rect(p-27, p-25, 34, 50);
     popMatrix();
   }
 
+
+  boolean enemyAlive()
+  {
+    for (int i = 0 ; i<bullets.size() ; i++)
+    {
+      Bullet b = (Bullet) bullets.get(i);
+      //checking the coordinates of the bullet
+      if(b.xCor > (pos.x -17) && b.xCor < (pos.x +17) && b.yCor > (pos.y -25) && b.yCor < (pos.y + 25))
+      {
+        //removing the bullet from the arraylist
+        bullets.remove(i);
+        return false;
+      }
+    }
+    return true;
+  }
 }

@@ -3,17 +3,37 @@ class Enemy extends GameCharacter
   float angle = 0;
   float targetAngle = 0;
   float easing = 0.05f;
-  float xVal = random(0, width);
-  float yVal = random(0, height);
+  int ran = int(random(1,5));
+  float xVal = 0;
+  float yVal = 0;
+  //float xVal = random(-50, width + 50);
+  //float yVal = random(-50, height + 50);
 
-  //
-  //you need to make a hitbox
-  //
   
   
   Enemy()
   {
-    super(width * 0.5f, height  * 0.5f);    
+    super(width * 0.5f, height  * 0.5f);  
+    if (ran == 1)
+    {
+      xVal = random(-70, 20);
+      yVal = random(0, height);
+    }
+    if (ran == 2)
+    {
+      xVal = random(0, width);
+      yVal = random(-70, 20);
+    }
+    if (ran ==3)
+    {
+      xVal = random(width +20, width +70);
+      yVal = random(0, height);
+    }
+    if (ran == 4)
+    {
+      xVal = random(0, width);
+      yVal = random(height +20, height +70);
+    }
     pos.x = xVal;
     pos.y = yVal;
     println("In Enemy Default Constructor");
@@ -25,18 +45,8 @@ class Enemy extends GameCharacter
     //println("angle is" + angle);
     forward.x = -cos(angle);
     forward.y = -sin(angle);
-    forward.mult(speed*0.3);
-
-         if (keys['L'])
-    {
-      println("value of enemy" + xVal +pos);
-      if(pos.y > 0)
-      {
-        
-        //pos.add(forward);
-      }
-    }
-      pos.add(forward);
+    forward.mult(speed*0.05);
+    pos.add(forward);
 
 
    /* if(pos.x == bullet.pos.x || pos.y == Bullet.pos.y)
@@ -99,6 +109,19 @@ class Enemy extends GameCharacter
     }
     return true;
   }
+  
+  boolean playerAlive()
+  {
+    println("player pos is " +player.pos.x);
+    println("enemy pos is " + xVal);
+    if((player.pos.x + 40) > (pos.x - 25) && player.pos.x < (pos.x +50) && player.pos.y > (pos.y - 20) && player.pos.y < (pos.y+20))
+    {
+      return false;
+    }
+    return true;
+  }
+  
+  
   
   void removeEnemy()
   {
