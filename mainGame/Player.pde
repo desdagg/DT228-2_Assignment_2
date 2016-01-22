@@ -105,7 +105,7 @@ class Player extends GameCharacter
       delay = 0;
     }
     delay++;
-    if (delay >= 15)
+    if (delay >= 30)
     {
       canShoot = true;
     }

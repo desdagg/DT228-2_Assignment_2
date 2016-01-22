@@ -45,7 +45,7 @@ class Enemy extends GameCharacter
     //println("angle is" + angle);
     forward.x = -cos(angle);
     forward.y = -sin(angle);
-    forward.mult(speed*0.05);
+    forward.mult(speed*0.3);
     pos.add(forward);
 
 
