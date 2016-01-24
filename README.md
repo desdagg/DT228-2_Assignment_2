@@ -15,3 +15,11 @@ Maybe a character customisation.
 -enemy hit detection created and are killable
 
 ![Alt text](https://github.com/desdagg/DT228-2_Assignment_2/blob/master/screens/version_0.65.png "version 0.65 screenshot")
+
+-Health bar and score counter
+
+![Alt text](https://github.com/desdagg/DT228-2_Assignment_2/blob/master/screens/Capture3.PNG)
+
+-startup screen (high scores coming soon)
+
+![Alt text](https://github.com/desdagg/DT228-2_Assignment_2/blob/master/screens/Capture.PNG "start screen")
