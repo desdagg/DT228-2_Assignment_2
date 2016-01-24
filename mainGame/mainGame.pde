@@ -1,6 +1,7 @@
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 ArrayList<BossEnemy> bosses = new ArrayList<BossEnemy>();
+PImage startScreen;
 int score = 0;
 int totalHealth = 300;
 float health = totalHealth;
@@ -9,8 +10,8 @@ void setup()
 {
   size(1000, 1000);
   player = new Player();
-  textSize(32);
-  text("Zombi33z", width/2, height/2);
+  //textSize(32);
+  //text("Zombi33z", width/2, height/2);
 
 }
 
@@ -39,6 +40,8 @@ void draw()
 {
   
   mainMenu();
+  gameOver();
+  highScores();
 
   if(gameState == 2)
   { 
@@ -47,11 +50,12 @@ void draw()
     stroke(0);
     rect(width *0.60, height/15, map(totalHealth, 0, totalHealth, 0, width/3), height/40);
     fill(255,0,0);
+    text("Health", width * 0.65, height/17);
     rect(width *0.60, height/15, map(health, 0, totalHealth, 0, width/3), height/40);/*height * -0.9(-health)*/
     textSize(32);
-    text("Zombi33z", width/2, height/2);
+    //text("Zombi33z", width/2, height/2);
     fill(0);
-    text("health: " + health, (width/10) * 3, height/10);
+    //text("health: " + health, (width/10) * 3, height/10);
     text("Score: " + score, width/10, height/10);
    
     player.render();
@@ -112,6 +116,10 @@ void draw()
         bosses.remove(i);
         score = score + 2;
       }
+      if(!boss.playerAlive())
+      {
+        health--;
+      }
     }
     
     for(Bullet b: bullets)
@@ -120,6 +128,11 @@ void draw()
       b.update();
       b.render();
     }
+    
+    if(health <= 0)
+    {
+      gameState = 1;
+    }
   }
 }
 
@@ -127,15 +140,70 @@ void mainMenu()
 {
   if(gameState == 0)
   {
-    background(60,190,0);
-    stroke(0);
-    text("Press G to start", width/3, height/2);
+    //background(60,190,0);
+    startScreen = loadImage("startScreen.jpg");
+    background(startScreen);
+    //stroke(255);
+    fill(250);
+    textSize(50);
+    textAlign(CENTER);
+    text("Press G to start", width/2, height/2);
+    text("Press H for High Scores", width/2, height *0.6);
     if(keys['G'])
     {
       gameState = 2;
     }  
+    if(keys['H'])
+    {
+      gameState = 3;
+    } 
   }
 }
+
+void gameOver()
+{
+  if(gameState == 1)
+  {
+    background(startScreen);
+    fill(250);
+    textSize(70);
+    text("GAME OVER", width/2, height/2);
+    text("Press C to continue", width/2, height * 0.6);
+    //resetting the game variables
+    health = totalHealth;
+    score = 0;
+    for(int i = 0 ; i<enemies.size() ; i++)
+    {
+      enemies.remove(i);
+    }
+    for(int i = 0 ; i<bosses.size() ; i++)
+    {
+      bosses.remove(i);
+    }
+    setup();
+    if(keys['C'])
+    {
+      gameState = 0;
+    }
+  }
+}
+
+void highScores()
+{
+  if(gameState == 3)
+  {
+    background(0);
+    textAlign(CENTER);
+    fill(255);
+    text("high scores will go here", width/2, height/2);
+    text("Press C to go back", width/2, height * 0.6);
+  }
+  if(keys['C'])
+  {
+    gameState = 0;
+  }
+}
+    
 
 
 void reset()
