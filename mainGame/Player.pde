@@ -93,10 +93,10 @@ class Player extends GameCharacter
     if (mousePressed && canShoot)
     {
       float a = 1.57;
-      float b = 1.50;
-      float c = 1.43;
-      float d = 1.64;
-      float e = 1.71;
+      float b = 1.43;
+      float c = 1.29;
+      float d = 1.71;
+      float e = 1.85;
       //ad a limit to amount of bullets creatable
       Bullet bullet1 = new Bullet();
       bullet1.pos.x = pos.x;
@@ -156,9 +156,27 @@ class Player extends GameCharacter
     */
     
     delay++;
-    if (delay >= 10)
+    if (delay >= 0)
     {
       canShoot = true;
+    }
+    
+    
+    //iterating through the arrayList of the bullets
+    for (int i = 0 ; i<bullets.size() ; i++)
+    {
+      //accessing each individual bullet
+      Bullet b = (Bullet) bullets.get(i);
+      //running a function to display the x value of the bullet.
+      float blltX, blltY;
+      blltX = b.displayx();
+      blltY = b.displayy();
+      //
+      if(blltX > width+10 || blltX < -10 || blltY > height +10 || blltY < -10)
+      {
+        bullets.remove(i);        
+      }
+        println("bullet x pos is" + blltX);
     }
   }
 

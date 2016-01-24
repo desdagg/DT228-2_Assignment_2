@@ -4,6 +4,7 @@ ArrayList<BossEnemy> bosses = new ArrayList<BossEnemy>();
 int score = 0;
 int totalHealth = 300;
 float health = totalHealth;
+int gameState = 0;
 void setup()
 {
   size(1000, 1000);
@@ -22,7 +23,7 @@ Player player;
 
 
 boolean[] keys = new boolean[512];
-int i;
+//int i;
 void keyPressed()
 {
   keys[keyCode] = true;
@@ -37,107 +38,105 @@ void keyReleased()
 void draw()
 {
   
-  //
-  //fix the health system...
-  //
-  
-  background(150);
-  noFill();
-  stroke(0);
-  rect(width *0.60, height/15, map(totalHealth, 0, totalHealth, 0, width/3), height/40);
-  fill(255,0,0);
-  rect(width *0.60, height/15, map(health, 0, totalHealth, 0, width/3), height/40);/*height * -0.9(-health)*/
-  textSize(32);
-  text("Zombi33z", width/2, height/2);
-  fill(0);
-  text("health: " + health, (width/10) * 3, height/10);
-  text("Score: " + score, width/10, height/10);
-  player.render();
-  player.update();
-  
-  
-  
+  mainMenu();
+
+  if(gameState == 2)
+  { 
+    background(150);
+    noFill();
+    stroke(0);
+    rect(width *0.60, height/15, map(totalHealth, 0, totalHealth, 0, width/3), height/40);
+    fill(255,0,0);
+    rect(width *0.60, height/15, map(health, 0, totalHealth, 0, width/3), height/40);/*height * -0.9(-health)*/
+    textSize(32);
+    text("Zombi33z", width/2, height/2);
+    fill(0);
+    text("health: " + health, (width/10) * 3, height/10);
+    text("Score: " + score, width/10, height/10);
+   
+    player.render();
+    player.update();
+    
     if(keys['M'])
-  {
-    reset();
-  }
-  
-  if(keys[' '])
-  {
-    Enemy enemy= new Enemy();
-    enemies.add(enemy);
-  }
-  
-  for(Enemy e: enemies)
+    {
+      reset();
+    }
+    
+    if(keys[' '])
+    {
+      Enemy enemy= new Enemy();
+      enemies.add(enemy);
+    }
+    
+    for(Enemy e: enemies)
+    {
+      e.render();
+      e.update();
+    }
+        
+    for(int i = 0 ; i<enemies.size() ; i++)
+    {
+      Enemy e = (Enemy) enemies.get(i);
+      
+      if(!e.enemyAlive())
       {
-        e.render();
-        e.update();
+        enemies.remove(i);
+        score = score + 1;
       }
       
-  for(int i = 0 ; i<enemies.size() ; i++)
-  {
-    Enemy e = (Enemy) enemies.get(i);
-    if(!e.enemyAlive())
-    {
-      enemies.remove(i);
-      score = score + 1;
+      if(!e.playerAlive())
+      {
+        health--;
+      }
     }
     
-    
-    if(!e.playerAlive())
+  
+    if(keys['O'])
     {
-      textSize(50);
-      text("Game Over", width/2, height/3);
-      health--;
-      //health = totalHealth /10;
+      BossEnemy bossenemy = new BossEnemy();
+      bosses.add(bossenemy);
     }
-  }
-  
-
-  if(keys['O'])
-  {
-    BossEnemy bossenemy = new BossEnemy();
-    bosses.add(bossenemy);
-  }
-  
-  for(BossEnemy boss: bosses)
-  {
     
-    boss.render();
-    boss.update();
-  }
-  
-  for(int i = 0 ; i<bosses.size() ; i++)
-  {
-    BossEnemy boss = (BossEnemy) bosses.get(i);
-    if(!boss.enemyAlive())
+    for(BossEnemy boss: bosses)
     {
-      bosses.remove(i);
-      score = score + 2;
+      
+      boss.render();
+      boss.update();
     }
-  }
-  
+    
+    for(int i = 0 ; i<bosses.size() ; i++)
+    {
+      BossEnemy boss = (BossEnemy) bosses.get(i);
+      if(!boss.enemyAlive())
+      {
+        bosses.remove(i);
+        score = score + 2;
+      }
+    }
+    
     for(Bullet b: bullets)
-  {
-    //float blltX, blltY;
-    b.update();
-    b.render();
-    //running a function to display the x value of the bullet.
-    /*blltX = b.displayx();
-    blltY = b.displayy();
-    //println("x cor of bullet: " + blltX);
-    //
-    //this is kind of redundant now...
-    //
-    if(blltX > width+10 || blltX < -10 || blltY > height +10 || blltY < -10)
     {
-      b.removebullet();
-      //bullets.remove(bullets b);
-    }*/
+      
+      b.update();
+      b.render();
+    }
   }
-
-//  println("bullet x pos is" + bullets.get(b.xCor));
 }
+
+void mainMenu()
+{
+  if(gameState == 0)
+  {
+    background(60,190,0);
+    stroke(0);
+    text("Press G to start", width/3, height/2);
+    if(keys['G'])
+    {
+      gameState = 2;
+    }  
+  }
+}
+
 
 void reset()
 {

@@ -46,9 +46,16 @@ class Bullet extends GameCharacter
   //
   void removebullet()
   {
-    col = 150;
-   // pos.x = 0;
-   // pos.y = 0;
-    
+        //iterating through the arrayList of the bullets
+    for (int i = 0 ; i<bullets.size() ; i++)
+    {
+      //accessing each individual bullet
+      Bullet b = (Bullet) bullets.get(i);
+      bullets.remove(i);
+    }
+      //col = 150;
+      // pos.x = 0;
+      // pos.y = 0;
   }
+  
 }
