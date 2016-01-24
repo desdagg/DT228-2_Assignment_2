@@ -104,6 +104,7 @@ class Enemy extends GameCharacter
       //checking the coordinates of the bullet
       if(b.xCor > (pos.x -17) && b.xCor < (pos.x +17) && b.yCor > (pos.y -25) && b.yCor < (pos.y + 25))
       {
+        
         //removing the bullet from the arraylist
         bullets.remove(i);
         return false;

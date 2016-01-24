@@ -2,6 +2,7 @@ ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 ArrayList<BossEnemy> bosses = new ArrayList<BossEnemy>();
 PImage startScreen;
+PImage bloodSplat;
 int score = 0;
 int totalHealth = 300;
 float health = totalHealth;
@@ -10,6 +11,7 @@ void setup()
 {
   size(1000, 1000);
   player = new Player();
+  gun = new Gun();
   //textSize(32);
   //text("Zombi33z", width/2, height/2);
 
@@ -21,6 +23,7 @@ void setup()
 
 Player player;
 
+Gun gun;
 
 
 boolean[] keys = new boolean[512];
@@ -61,10 +64,6 @@ void draw()
     player.render();
     player.update();
     
-    if(keys['M'])
-    {
-      reset();
-    }
     
     if(keys[' '])
     {
@@ -204,7 +203,10 @@ void highScores()
   }
 }
     
-
+void blood()
+{
+  bloodSplat = loadImage("blood_splat1.png");
+}
 
 void reset()
 {
