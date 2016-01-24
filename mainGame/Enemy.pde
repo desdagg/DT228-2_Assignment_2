@@ -96,8 +96,10 @@ class Enemy extends GameCharacter
   //and check if any are touching an enemy, if they are the function will return false
   boolean enemyAlive()
   {
+    //iterating through the arrayList of the bullets
     for (int i = 0 ; i<bullets.size() ; i++)
     {
+      //accessing each individual bullet
       Bullet b = (Bullet) bullets.get(i);
       //checking the coordinates of the bullet
       if(b.xCor > (pos.x -17) && b.xCor < (pos.x +17) && b.yCor > (pos.y -25) && b.yCor < (pos.y + 25))

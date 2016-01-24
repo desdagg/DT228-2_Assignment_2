@@ -2,8 +2,8 @@ ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 ArrayList<BossEnemy> bosses = new ArrayList<BossEnemy>();
 int score = 0;
-int totalHealth = 10;
-float health = 1;
+int totalHealth = 300;
+float health = totalHealth;
 void setup()
 {
   size(1000, 1000);
@@ -42,7 +42,11 @@ void draw()
   //
   
   background(150);
-  rect(width/10, height*0.9, width/10, height * (-health));
+  noFill();
+  stroke(0);
+  rect(width *0.60, height/15, map(totalHealth, 0, totalHealth, 0, width/3), height/40);
+  fill(255,0,0);
+  rect(width *0.60, height/15, map(health, 0, totalHealth, 0, width/3), height/40);/*height * -0.9(-health)*/
   textSize(32);
   text("Zombi33z", width/2, height/2);
   fill(0);
@@ -58,7 +62,7 @@ void draw()
     reset();
   }
   
-  if(keys['P'])
+  if(keys[' '])
   {
     Enemy enemy= new Enemy();
     enemies.add(enemy);
@@ -84,8 +88,8 @@ void draw()
     {
       textSize(50);
       text("Game Over", width/2, height/3);
-      totalHealth++;
-      health = totalHealth /10;
+      health--;
+      //health = totalHealth /10;
     }
   }
   

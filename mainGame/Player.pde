@@ -87,11 +87,60 @@ class Player extends GameCharacter
      bullets.remove(b);
      }
      }*/
-
+     
+     //attempt at different type of fireing
+     //
+    if (mousePressed && canShoot)
+    {
+      float a = 1.57;
+      float b = 1.50;
+      float c = 1.43;
+      float d = 1.64;
+      float e = 1.71;
+      //ad a limit to amount of bullets creatable
+      Bullet bullet1 = new Bullet();
+      bullet1.pos.x = pos.x;
+      bullet1.pos.y = pos.y;
+      //angling the bullet toward the mouse
+      bullet1.theta = angle+a;
+      bullets.add(bullet1);
+      
+      Bullet bullet2 = new Bullet();
+      bullet2.pos.x = pos.x;
+      bullet2.pos.y = pos.y;
+      //angling the bullet toward the mouse
+      bullet2.theta = angle+b;
+      bullets.add(bullet2);
+      
+      Bullet bullet3 = new Bullet();
+      bullet3.pos.x = pos.x;
+      bullet3.pos.y = pos.y;
+      //angling the bullet toward the mouse
+      bullet3.theta = angle+c;
+      bullets.add(bullet3);
+      
+      Bullet bullet4 = new Bullet();
+      bullet4.pos.x = pos.x;
+      bullet4.pos.y = pos.y;
+      //angling the bullet toward the mouse
+      bullet4.theta = angle+d;
+      bullets.add(bullet4);
+      
+      Bullet bullet5 = new Bullet();
+      bullet5.pos.x = pos.x;
+      bullet5.pos.y = pos.y;
+      //angling the bullet toward the mouse
+      bullet5.theta = angle+e;
+      bullets.add(bullet5);      
+      canShoot = false;
+      delay = 0;
+    }
     //test shooting version
     //
     //hand gun implementation --- hopefully more guns in future updates
     //
+    
+    /*
     if (mousePressed && canShoot)
     {
       //ad a limit to amount of bullets creatable
@@ -104,8 +153,10 @@ class Player extends GameCharacter
       canShoot = false;
       delay = 0;
     }
+    */
+    
     delay++;
-    if (delay >= 30)
+    if (delay >= 10)
     {
       canShoot = true;
     }
