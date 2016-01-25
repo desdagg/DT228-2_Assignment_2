@@ -6,8 +6,7 @@ class Enemy extends GameCharacter
   int ran = int(random(1,5));
   float xVal = 0;
   float yVal = 0;
-  //float xVal = random(-50, width + 50);
-  //float yVal = random(-50, height + 50);
+
 
   
   
@@ -113,15 +112,15 @@ class Enemy extends GameCharacter
     return true;
   }
   
-  boolean playerAlive()
+  boolean touchingPlayer()
   {
     //println("player pos is " +player.pos.x);
     //println("enemy pos is " + xVal);
     if((player.pos.x + 40) > (pos.x - 25) && player.pos.x < (pos.x +50) && player.pos.y > (pos.y - 20) && player.pos.y < (pos.y+20))
     {
-      return false;
+      return true;
     }
-    return true;
+    return false;
   }
   
   

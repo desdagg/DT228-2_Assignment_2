@@ -20,8 +20,8 @@ class Bullet extends GameCharacter
   
   void update()
   {
-  xCor = pos.x;
-  yCor = pos.y;
+    xCor = pos.x;
+    yCor = pos.y;
   
     forward.x = sin(theta);
     forward.y = - cos(theta);
@@ -32,18 +32,16 @@ class Bullet extends GameCharacter
   
   float displayx()
   {
-    //println("bullet x pos is" + pos.x);
-    return (xCor);
+   //println("bullet x pos is" + pos.x);
+   return (xCor);
   }
   
   float displayy()
   {
-    return (yCor);
+   return (yCor);
   }
   
-  //
-  //dont really need this anymore
-  //
+
   void removebullet()
   {
         //iterating through the arrayList of the bullets

@@ -7,7 +7,7 @@ class GameCharacter
   PVector right;
   float theta = 0.0f;
   float p = 0;
-  float halfp;
+  //float halfp;
   float speed = 7.0f;
   
   
@@ -25,7 +25,14 @@ class GameCharacter
     left = new PVector(-1, 0);
     right = new PVector(1, 0);
     
-   // this.p = p; 
-
   }
+  
+  void update()
+  {
+  }
+  
+  void render()
+  {
+  }
+  
 }

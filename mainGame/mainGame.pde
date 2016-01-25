@@ -1,12 +1,18 @@
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 ArrayList<BossEnemy> bosses = new ArrayList<BossEnemy>();
+
+Player player;
+Gun gun;
+
+boolean[] keys = new boolean[512];
 PImage startScreen;
 PImage bloodSplat;
 int score = 0;
 int totalHealth = 300;
 float health = totalHealth;
 int gameState = 0;
+
 void setup()
 {
   size(1000, 1000);
@@ -21,13 +27,11 @@ void setup()
 //you need to make a menue
 //
 
-Player player;
-
-Gun gun;
 
 
-boolean[] keys = new boolean[512];
-//int i;
+
+
+
 void keyPressed()
 {
   keys[keyCode] = true;
@@ -41,7 +45,6 @@ void keyReleased()
 
 void draw()
 {
-  
   mainMenu();
   gameOver();
   highScores();
@@ -56,9 +59,7 @@ void draw()
     text("Health", width * 0.65, height/17);
     rect(width *0.60, height/15, map(health, 0, totalHealth, 0, width/3), height/40);/*height * -0.9(-health)*/
     textSize(32);
-    //text("Zombi33z", width/2, height/2);
     fill(0);
-    //text("health: " + health, (width/10) * 3, height/10);
     text("Score: " + score, width/10, height/10);
    
     player.render();
@@ -87,7 +88,7 @@ void draw()
         score = score + 1;
       }
       
-      if(!e.playerAlive())
+      if(e.touchingPlayer())
       {
         health--;
       }
@@ -115,7 +116,7 @@ void draw()
         bosses.remove(i);
         score = score + 2;
       }
-      if(!boss.playerAlive())
+      if(boss.touchingPlayer())
       {
         health--;
       }

@@ -108,13 +108,13 @@ class BossEnemy extends GameCharacter
     return true;
   }
   
-  boolean playerAlive()
+  boolean touchingPlayer()
   {
     
     if((player.pos.x + 40) > (pos.x - 25) && player.pos.x < (pos.x +50) && player.pos.y > (pos.y - 20) && player.pos.y < (pos.y+20))
     {
-      return false;
+      return true;
     }
-    return true;
+    return false;
   }
 }
