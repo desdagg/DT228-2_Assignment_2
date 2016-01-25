@@ -2,7 +2,29 @@ class Gun
 {
   int delay = 0;
   boolean canShoot = true;
+  int gunType = 1;
   
+  Gun()
+  {
+
+  }
+  
+  void currentGun()
+  {
+    if(keys['R'])
+    {
+      gunType = gunType * -1;
+    }
+    
+    if (gunType == 1)
+    {
+      pistol();
+    }
+    if (gunType == -1)
+    {
+      shotGun();
+    }
+  }
   
   void pistol()
   {
@@ -19,7 +41,7 @@ class Gun
         delay = 0;
       }     
       delay++; 
-      if (delay >= 30)
+      if (delay >= 10)
       {
         canShoot = true;
       }

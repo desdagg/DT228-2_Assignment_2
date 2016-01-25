@@ -63,7 +63,7 @@ void draw()
    
     player.render();
     player.update();
-    
+    gun.currentGun();
     
     if(keys[' '])
     {

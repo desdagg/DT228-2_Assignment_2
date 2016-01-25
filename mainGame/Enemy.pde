@@ -115,8 +115,8 @@ class Enemy extends GameCharacter
   
   boolean playerAlive()
   {
-    println("player pos is " +player.pos.x);
-    println("enemy pos is " + xVal);
+    //println("player pos is " +player.pos.x);
+    //println("enemy pos is " + xVal);
     if((player.pos.x + 40) > (pos.x - 25) && player.pos.x < (pos.x +50) && player.pos.y > (pos.y - 20) && player.pos.y < (pos.y+20))
     {
       return false;

@@ -69,26 +69,29 @@ class Player extends GameCharacter
     //
     //this needs to be fixed...
     //
-println(gunType);
-    if(keys['N']);
-    {
-      gunType = 1;
-    }
     
-    if(toggle == -1);
-    {
-      gunType = 3;
-    }
+   
     
-    if(gunType == 1)
-    {
-      gun.pistol();
-    }
+//println(gunType);
+//    if(keys['N']);
+//    {
+//      gunType = 1;
+//    }
     
-    if(gunType == 2)
-    {
-      gun.shotGun();
-    }
+//    if(toggle == -1);
+//    {
+//      gunType = 3;
+//    }
+    
+//    if(gunType == 1)
+//    {
+//      gun.pistol();
+//    }
+    
+//    if(gunType == 2)
+//    {
+//      gun.shotGun();
+//    }
 
     //create bullets when mouse pressed
      //attempt at different type of fireing
@@ -182,7 +185,7 @@ println(gunType);
       {
         bullets.remove(i);        
       }
-        println("bullet x pos is" + blltX);
+        //println("bullet x pos is" + blltX);
     }
   }
 
