@@ -9,33 +9,22 @@ boolean[] keys = new boolean[512];
 PImage startScreen;
 PImage bloodSplat;
 int score = 0;
-int totalHealth = 300;
-float health = totalHealth;
 int gameState = 0;
+
 
 void setup()
 {
   size(1000, 1000);
   player = new Player();
   gun = new Gun();
-  //textSize(32);
-  //text("Zombi33z", width/2, height/2);
-
 }
-
-//
-//you need to make a menue
-//
-
-
-
-
 
 
 void keyPressed()
 {
   keys[keyCode] = true;
 }
+
 
 void keyReleased()
 {
@@ -52,12 +41,6 @@ void draw()
   if(gameState == 2)
   { 
     background(150);
-    noFill();
-    stroke(0);
-    rect(width *0.60, height/15, map(totalHealth, 0, totalHealth, 0, width/3), height/40);
-    fill(255,0,0);
-    text("Health", width * 0.65, height/17);
-    rect(width *0.60, height/15, map(health, 0, totalHealth, 0, width/3), height/40);/*height * -0.9(-health)*/
     textSize(32);
     fill(0);
     text("Score: " + score, width/10, height/10);
@@ -90,11 +73,10 @@ void draw()
       
       if(e.touchingPlayer())
       {
-        health--;
+        player.health--;
       }
     }
     
-  
     if(keys['O'])
     {
       BossEnemy bossenemy = new BossEnemy();
@@ -111,14 +93,16 @@ void draw()
     for(int i = 0 ; i<bosses.size() ; i++)
     {
       BossEnemy boss = (BossEnemy) bosses.get(i);
+      
       if(!boss.enemyAlive())
       {
         bosses.remove(i);
         score = score + 2;
       }
+      
       if(boss.touchingPlayer())
       {
-        health--;
+        player.health--;
       }
     }
     
@@ -128,13 +112,15 @@ void draw()
       b.update();
       b.render();
     }
+
     
-    if(health <= 0)
+    if(!player.playerAlive())
     {
       gameState = 1;
     }
   }
 }
+
 
 void mainMenu()
 {
@@ -149,16 +135,19 @@ void mainMenu()
     textAlign(CENTER);
     text("Press G to start", width/2, height/2);
     text("Press H for High Scores", width/2, height *0.6);
+    
     if(keys['G'])
     {
       gameState = 2;
     }  
+    
     if(keys['H'])
     {
       gameState = 3;
     } 
   }
 }
+
 
 void gameOver()
 {
@@ -169,24 +158,27 @@ void gameOver()
     textSize(70);
     text("GAME OVER", width/2, height/2);
     text("Press C to continue", width/2, height * 0.6);
-    //resetting the game variables
-    health = totalHealth;
+    //resetting the game 
     score = 0;
+    
     for(int i = 0 ; i<enemies.size() ; i++)
     {
       enemies.remove(i);
     }
+    
     for(int i = 0 ; i<bosses.size() ; i++)
     {
       bosses.remove(i);
     }
     setup();
+    
     if(keys['C'])
     {
       gameState = 0;
     }
   }
 }
+
 
 void highScores()
 {
@@ -198,6 +190,7 @@ void highScores()
     text("high scores will go here", width/2, height/2);
     text("Press C to go back", width/2, height * 0.6);
   }
+  
   if(keys['C'])
   {
     gameState = 0;
@@ -207,13 +200,4 @@ void highScores()
 void blood()
 {
   bloodSplat = loadImage("blood_splat1.png");
-}
-
-void reset()
-{
-  
-
-    setup();
-    //draw();
-  
 }

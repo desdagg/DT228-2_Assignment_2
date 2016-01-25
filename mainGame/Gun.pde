@@ -1,8 +1,10 @@
 class Gun
 {
   int delay = 0;
+  int swapDelay = 0;
   boolean canShoot = true;
   int gunType = 1;
+  boolean canSwap = true;
   
   Gun()
   {
@@ -11,9 +13,17 @@ class Gun
   
   void currentGun()
   {
-    if(keys['R'])
+    if(keys['R'] && canSwap)
     {
       gunType = gunType * -1;
+      canSwap = false;
+      swapDelay = 0;
+    }
+    swapDelay++;
+    
+    if (swapDelay >= 20)
+    {
+      canSwap = true;
     }
     
     if (gunType == 1)
@@ -28,6 +38,7 @@ class Gun
   
   void pistol()
   {
+    text("pistol", width/2, height/9);
     if (mousePressed && canShoot)
       {
         //ad a limit to amount of bullets creatable
@@ -50,6 +61,7 @@ class Gun
   
  void shotGun()
  {
+   text("shotgun", width/2, height/9);
    if (mousePressed && canShoot)
     {
       float a = 1.57;

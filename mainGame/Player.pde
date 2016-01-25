@@ -4,10 +4,12 @@ class Player extends GameCharacter
   float angle = 0;
   float targetAngle = 0;
   float easing = 0.5f;
-  boolean canShoot = true;
-  int delay = 0;
-  int gunType = 1;
-  int toggle = 1;
+  //boolean canShoot = true;
+  //int delay = 0;
+  //int gunType = 1;
+  //int toggle = 1;
+  int totalHealth = 300;
+  float health = totalHealth;
 
   Player()
   {
@@ -18,6 +20,14 @@ class Player extends GameCharacter
 
   void update()
   {
+    textSize(32);
+    noFill();
+    stroke(0);
+    rect(width *0.60, height/15, map(totalHealth, 0, totalHealth, 0, width/3), height/40);
+    fill(255,0,0);
+    text("Health", width * 0.65, height/17);
+    rect(width *0.60, height/15, map(health, 0, totalHealth, 0, width/3), height/40);/*height * -0.9(-health)*/
+
     //movement direcions
     forward.x = sin(theta);
     forward.y = - cos(theta);
@@ -129,6 +139,15 @@ class Player extends GameCharacter
     //player head
     ellipse(p, p, 28, 28);
     popMatrix();
+  }
+  
+  boolean playerAlive()
+  {
+    if(health <= 0)
+    {
+      return false;
+    }
+    return true;
   }
   
 
