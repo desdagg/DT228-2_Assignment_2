@@ -1,6 +1,8 @@
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-ArrayList<BossEnemy> bosses = new ArrayList<BossEnemy>();
+ArrayList<SecondEnemy> secondenemies = new ArrayList<SecondEnemy>();
+
+
 
 Player player;
 Gun gun;
@@ -77,33 +79,16 @@ void draw()
       }
     }
     
-    if(keys['O'])
+    if(keys['I'])
     {
-      BossEnemy bossenemy = new BossEnemy();
-      bosses.add(bossenemy);
+      SecondEnemy secondenemy= new SecondEnemy();
+      enemies.add(secondenemy);
     }
     
-    for(BossEnemy boss: bosses)
+    for(SecondEnemy s: secondenemies)
     {
-      
-      boss.render();
-      boss.update();
-    }
-    
-    for(int i = 0 ; i<bosses.size() ; i++)
-    {
-      BossEnemy boss = (BossEnemy) bosses.get(i);
-      
-      if(!boss.enemyAlive())
-      {
-        bosses.remove(i);
-        score = score + 2;
-      }
-      
-      if(boss.touchingPlayer())
-      {
-        player.health--;
-      }
+      s.render();
+      s.update();
     }
     
     for(Bullet b: bullets)
@@ -126,10 +111,8 @@ void mainMenu()
 {
   if(gameState == 0)
   {
-    //background(60,190,0);
     startScreen = loadImage("startScreen.jpg");
     background(startScreen);
-    //stroke(255);
     fill(250);
     textSize(50);
     textAlign(CENTER);
@@ -164,11 +147,6 @@ void gameOver()
     for(int i = 0 ; i<enemies.size() ; i++)
     {
       enemies.remove(i);
-    }
-    
-    for(int i = 0 ; i<bosses.size() ; i++)
-    {
-      bosses.remove(i);
     }
     setup();
     

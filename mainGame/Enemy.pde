@@ -6,6 +6,9 @@ class Enemy extends GameCharacter
   int ran = int(random(1,5));
   float xVal = 0;
   float yVal = 0;
+  color headColour = color(145, 155, 0);
+  color bodyColour = color(145,200,0);
+  int enemyHealth = 1;
 
 
   
@@ -73,14 +76,14 @@ class Enemy extends GameCharacter
     //translate(pos.x, pos.y);
     //enemy shoulders
     stroke(0);
-    fill(145,200,0);
+    fill(bodyColour);
     rect(p-7, p+10, 14, 15);
     rect(p-7, p-10, 14, -15);
     //enemy hands
     rect(p-27, p+25, 20, -15);
     rect(p-27, p-10, 20, -15);
     //enemy head
-    fill(145, 155, 0);
+    fill(headColour);
     ellipse(p,p,28,28);
     
     
@@ -106,6 +109,12 @@ class Enemy extends GameCharacter
         
         //removing the bullet from the arraylist
         bullets.remove(i);
+        enemyHealth--;
+        //return false;
+      }
+      
+      if(enemyHealth <= 0)
+      {
         return false;
       }
     }
