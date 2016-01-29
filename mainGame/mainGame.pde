@@ -1,11 +1,12 @@
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-ArrayList<SecondEnemy> secondenemies = new ArrayList<SecondEnemy>();
 
 
+String Score_File = "HighScore.csv";
 
 Player player;
 Gun gun;
+//Score highscore;
 
 boolean[] keys = new boolean[512];
 PImage startScreen;
@@ -83,13 +84,10 @@ void draw()
     {
       SecondEnemy secondenemy= new SecondEnemy();
       enemies.add(secondenemy);
+      secondenemy.render();
+      secondenemy.update();
     }
     
-    for(SecondEnemy s: secondenemies)
-    {
-      s.render();
-      s.update();
-    }
     
     for(Bullet b: bullets)
     {
@@ -165,7 +163,9 @@ void highScores()
     background(0);
     textAlign(CENTER);
     fill(255);
-    text("high scores will go here", width/2, height/2);
+    //text("high scores will go here", width/2, height/2);
+    //Score hghscore = new Score(Score_File);
+    //highscore.displayScores();
     text("Press C to go back", width/2, height * 0.6);
   }
   
