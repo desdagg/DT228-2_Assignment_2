@@ -7,7 +7,6 @@ class GameCharacter
   PVector right;
   float theta = 0.0f;
   float p = 0;
-  //float halfp;
   float speed = 7.0f;
   
   

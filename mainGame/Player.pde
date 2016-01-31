@@ -4,29 +4,17 @@ class Player extends GameCharacter
   float angle = 0;
   float targetAngle = 0;
   float easing = 0.5f;
-  //boolean canShoot = true;
-  //int delay = 0;
-  //int gunType = 1;
-  //int toggle = 1;
   int totalHealth = 300;
   float health = totalHealth;
 
   Player()
   {
     super(width * 0.5f, height  * 0.5f);   
-    // println("p is " + p);
     println("In Player Default Constructor");
   }
 
   void update()
   {
-    //textSize(32);
-    //noFill();
-    //stroke(0);
-    //rect(width *0.60, height/15, map(totalHealth, 0, totalHealth, 0, width/3), height/40);
-    //fill(255,0,0);
-    //text("Health", width * 0.65, height/17);
-    //rect(width *0.60, height/15, map(health, 0, totalHealth, 0, width/3), height/40);
 
     //movement direcions
     forward.x = sin(theta);
@@ -88,12 +76,11 @@ class Player extends GameCharacter
       float blltX, blltY;
       blltX = b.displayx();
       blltY = b.displayy();
-      //
+ 
       if(blltX > width+10 || blltX < -10 || blltY > height +10 || blltY < -10)
       {
         bullets.remove(i);        
       }
-        //println("bullet x pos is" + blltX);
     }
   }
 
@@ -102,7 +89,6 @@ class Player extends GameCharacter
 
   void render()
   {
-    //println("rendering");
     //player angle facing the mouse position
     angle = atan2( mouseY - pos.y, mouseX - pos.x );
 
@@ -122,24 +108,28 @@ class Player extends GameCharacter
     //println(pos);
     stroke(0);
     fill(255, 0, 0);
+    
     //player shoulders
     rect(p-7, p+10, 14, 15);
     rect(p-7, p-10, 14, -15);
+    
     //player hand
     triangle(p+7, p+25, p+23, p-3, p, p+20);
     fill(0);
+    
     //player gun
     rect(p+18, p-3, 15, 6);
+    
     //gun muzzel
     fill(80);
     rect(p+33, p-2, 5, 4);
-
-    //rect(p+7, p+10, 14, 15);
     fill(180, 150, 0);
+    
     //player head
     ellipse(p, p, 28, 28);
     popMatrix();
   }
+  
   
   void showStats()
   {

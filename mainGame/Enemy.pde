@@ -41,26 +41,18 @@ class Enemy extends GameCharacter
     println("In Enemy Default Constructor");
   }
   
+  
   void update()
   {
-
-    //println("angle is" + angle);
     forward.x = -cos(angle);
     forward.y = -sin(angle);
     forward.mult(speed*0.3);
-    pos.add(forward);
-
-
-   /* if(pos.x == bullet.pos.x || pos.y == Bullet.pos.y)
-    {
-      println("thats a hit");
-    }*/
-    
+    pos.add(forward); 
   }
+  
   
   void render()
   {
-    //println(pos.x);
     //enemy angle facing the player position
     angle = atan2(pos.y - player.pos.y, pos.x - player.pos.x);
     
@@ -73,27 +65,26 @@ class Enemy extends GameCharacter
     pushMatrix();
     translate(pos.x, pos.y);
     rotate( targetAngle );
-    //translate(pos.x, pos.y);
-    //enemy shoulders
     stroke(0);
     fill(bodyColour);
     rect(p-7, p+10, 14, 15);
     rect(p-7, p-10, 14, -15);
+    
     //enemy hands
     rect(p-27, p+25, 20, -15);
     rect(p-27, p-10, 20, -15);
+    
     //enemy head
     fill(headColour);
     ellipse(p,p,28,28);
-    
-    
-    
+  
     //hitbox
     noFill();
     //rect(p-27, p-25, 34, 50);
     popMatrix();
   }
-  
+ 
+ 
   //using a boolean this will iterate through all the bullets in its arraylist
   //and check if any are touching an enemy, if they are the function will return false
   boolean enemyAlive()
@@ -121,24 +112,14 @@ class Enemy extends GameCharacter
     return true;
   }
   
+  
   boolean touchingPlayer()
   {
-    //println("player pos is " +player.pos.x);
-    //println("enemy pos is " + xVal);
     if((player.pos.x + 40) > (pos.x - 25) && player.pos.x < (pos.x +50) && player.pos.y > (pos.y - 20) && player.pos.y < (pos.y+20))
     {
       return true;
     }
+    
     return false;
   }
-  
-  
-  
-  void removeEnemy()
-  {
-    
-    
-    
-  }
-
 }

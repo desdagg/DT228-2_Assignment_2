@@ -4,7 +4,7 @@ class Bullet extends GameCharacter
   float xCor;
   float yCor;
   int col = color(0);
- // int col = color(round(random(50, 250)), round(random(50, 250)), round(random(50, 250)));
+ 
 
   void render()
   {
@@ -13,7 +13,6 @@ class Bullet extends GameCharacter
     stroke(col);
     pushMatrix();
     translate(pos.x, pos.y);
-    //println(player.p);
     rotate(theta);
     line(0, -30, 0, -5);
     popMatrix();
@@ -33,7 +32,6 @@ class Bullet extends GameCharacter
 
   float displayx()
   {
-    //println("bullet x pos is" + pos.x);
     return (xCor);
   }
 
@@ -52,8 +50,5 @@ class Bullet extends GameCharacter
       //Bullet b = (Bullet) bullets.get(i);
       bullets.remove(i);
     }
-    //col = 150;
-    // pos.x = 0;
-    // pos.y = 0;
   }
 }

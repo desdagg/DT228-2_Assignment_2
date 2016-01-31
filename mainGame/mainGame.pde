@@ -2,11 +2,11 @@ ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
 
-String Score_File = "HighScore.csv";
+String SCORE_FILE = "HighScores.csv";
 
 Player player;
 Gun gun;
-//Score highscore;
+Score highScore;
 
 boolean[] keys = new boolean[512];
 PImage startScreen;
@@ -162,50 +162,17 @@ void highScores()
 {
   if(gameState == 3)
   {
-    background(0);
-    
-    fill(255);
-    
-    
-    //String lines[] = loadStrings("HighScores.csv");
-    //println("there are " + lines.length + " lines");
-    
-    //for (int i = 0 ; i < lines.length ; i++)
-    //{
-    //  println(lines[i]);
-    // //String[] data = lines[1].split(","); 
-      
-    //}
-    
-    String lines[] = loadStrings("HighScores.csv");
-    
-    for(int i = 0 ; i < lines.length ; i++)
-    {
-      String data[] = lines[i].split(","); 
-      textAlign(LEFT);
-      text(i+1 + ". " + data[0] + "          " + data[1] , width*0.3, height * ((i+1.99)/10));
-      println(data[0]);
-      //for(int j = 0 ; j < data.length ; j++)
-      //{
-      //  text(data[j] , width/2, height/2);
-      //  println(data[j]);
-      //}
-    }
-    textAlign(CENTER);
-    //text("high scores will go here", width/2, height/2);
-    //Score hghscore = new Score(Score_File);
-    //highscore.displayScores();
-    text("High Scores", width/2, height * 0.1);
-    text("Press C to go back", width/2, height * 0.9);
+    highScore = new Score();
+    highScore.displayScores(SCORE_FILE);
   }
-  
+   
   if(keys['C'])
   {
     gameState = 0;
   }
 }
     
-void blood()
-{
-  bloodSplat = loadImage("blood_splat1.png");
-}
+//void blood()
+//{
+//  bloodSplat = loadImage("blood_splat1.png");
+//}
