@@ -7,11 +7,13 @@ String SCORE_FILE = "HighScores.csv";
 Player player;
 Gun gun;
 Score highScore;
+Input input;
 
 boolean[] keys = new boolean[512];
 PImage startScreen;
 PImage bloodSplat;
-int score = 0;
+int score;
+int finalScore;
 int gameState = 0;
 
 
@@ -74,6 +76,7 @@ void draw()
       {
         enemies.remove(i);
         score = score + 1;
+        finalScore = score;
       }
       
       if(e.touchingPlayer())
@@ -136,11 +139,16 @@ void gameOver()
 {
   if(gameState == 1)
   {
+    //finalScore = score;
     background(startScreen);
     fill(250);
     textSize(70);
     text("GAME OVER", width/2, height/2);
     text("Press C to continue", width/2, height * 0.6);
+    
+    input = new Input();
+    input.scoreCheck(finalScore, SCORE_FILE);
+    
     //resetting the game 
     score = 0;
     
