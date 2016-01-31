@@ -38,6 +38,7 @@ class Gun
   
   void pistol()
   {
+    fill(255,0,0);
     text("pistol", width/2, height/9);
     if (mousePressed && canShoot)
       {
@@ -61,6 +62,7 @@ class Gun
   
  void shotGun()
  {
+   fill(255,0,0);
    text("shotgun", width/2, height/9);
    if (mousePressed && canShoot)
     {

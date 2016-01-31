@@ -40,6 +40,7 @@ void draw()
   mainMenu();
   gameOver();
   highScores();
+  
 
   if(gameState == 2)
   { 
@@ -48,6 +49,7 @@ void draw()
     fill(0);
     text("Score: " + score, width/10, height/10);
    
+    player.showStats();
     player.render();
     player.update();
     gun.currentGun();
@@ -161,12 +163,40 @@ void highScores()
   if(gameState == 3)
   {
     background(0);
-    textAlign(CENTER);
+    
     fill(255);
+    
+    
+    //String lines[] = loadStrings("HighScores.csv");
+    //println("there are " + lines.length + " lines");
+    
+    //for (int i = 0 ; i < lines.length ; i++)
+    //{
+    //  println(lines[i]);
+    // //String[] data = lines[1].split(","); 
+      
+    //}
+    
+    String lines[] = loadStrings("HighScores.csv");
+    
+    for(int i = 0 ; i < lines.length ; i++)
+    {
+      String data[] = lines[i].split(","); 
+      textAlign(LEFT);
+      text(i+1 + ". " + data[0] + "          " + data[1] , width*0.3, height * ((i+1.99)/10));
+      println(data[0]);
+      //for(int j = 0 ; j < data.length ; j++)
+      //{
+      //  text(data[j] , width/2, height/2);
+      //  println(data[j]);
+      //}
+    }
+    textAlign(CENTER);
     //text("high scores will go here", width/2, height/2);
     //Score hghscore = new Score(Score_File);
     //highscore.displayScores();
-    text("Press C to go back", width/2, height * 0.6);
+    text("High Scores", width/2, height * 0.1);
+    text("Press C to go back", width/2, height * 0.9);
   }
   
   if(keys['C'])

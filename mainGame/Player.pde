@@ -20,13 +20,13 @@ class Player extends GameCharacter
 
   void update()
   {
-    textSize(32);
-    noFill();
-    stroke(0);
-    rect(width *0.60, height/15, map(totalHealth, 0, totalHealth, 0, width/3), height/40);
-    fill(255,0,0);
-    text("Health", width * 0.65, height/17);
-    rect(width *0.60, height/15, map(health, 0, totalHealth, 0, width/3), height/40);/*height * -0.9(-health)*/
+    //textSize(32);
+    //noFill();
+    //stroke(0);
+    //rect(width *0.60, height/15, map(totalHealth, 0, totalHealth, 0, width/3), height/40);
+    //fill(255,0,0);
+    //text("Health", width * 0.65, height/17);
+    //rect(width *0.60, height/15, map(health, 0, totalHealth, 0, width/3), height/40);
 
     //movement direcions
     forward.x = sin(theta);
@@ -139,6 +139,17 @@ class Player extends GameCharacter
     //player head
     ellipse(p, p, 28, 28);
     popMatrix();
+  }
+  
+  void showStats()
+  {
+    textSize(32);
+    noFill();
+    stroke(0);
+    rect(width *0.60, height/15, map(totalHealth, 0, totalHealth, 0, width/3), height/40);
+    fill(255,0,0);
+    text("Health", width * 0.65, height/17);
+    rect(width *0.60, height/15, map(health, 0, totalHealth, 0, width/3), height/40);
   }
   
   boolean playerAlive()
