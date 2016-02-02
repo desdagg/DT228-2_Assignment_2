@@ -41,3 +41,33 @@ class Input
   }
   
 }
+
+/*
+import javax.swing.*; 
+String userName = "aa";
+
+void setup()
+{
+  try 
+  { 
+    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+  } 
+  
+  catch (Exception e)
+  { 
+    e.printStackTrace();
+  }
+  
+  String preset="Enter name";
+  userName = JOptionPane.showInputDialog(frame, "Enter your name", preset);
+  size(500,500);
+
+}
+
+void draw()
+{
+      background(0);
+      text(userName, width/2, height/2);
+      
+}
+*/
