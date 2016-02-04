@@ -23,3 +23,7 @@ Maybe a character customisation.
 -startup screen (high scores coming soon)
 
 ![Alt text](https://github.com/desdagg/DT228-2_Assignment_2/blob/master/screens/Capture.PNG "start screen")
+
+-high scores read and can be fully written to
+
+![Alt text](https://github.com/desdagg/DT228-2_Assignment_2/blob/master/screens/highScores.PNG "HighScores")
