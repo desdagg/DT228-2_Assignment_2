@@ -4,6 +4,9 @@ Input input;
 boolean[] keys = new boolean[512];
 int gameState = 0;
 int readFile = 0;
+import javax.swing.*;
+
+
 
 void setup()
 {
@@ -31,6 +34,7 @@ void draw()
   {
     background(50, 50, 50);
     text("menue, h for scores\n i for input", width/2, height/2);
+    
   }
   
   if(keys['H'])
@@ -61,12 +65,12 @@ void highScores()
 
 void inputScores()
 {
-  if(gameState == 1)
-  {
-   if(readFile == 0)
+  
+   if(gameState == 1 && readFile == 0)
    {
     readFile = input.inputRead(SCORE_FILE, 99, readFile);
-   }
     gameState = 0;
-  }
+   }
+    
+  
 }

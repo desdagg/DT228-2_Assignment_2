@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
@@ -14,6 +16,7 @@ PImage startScreen;
 PImage bloodSplat;
 int score;
 int finalScore;
+int readFile = 0;
 int gameState = 0;
 
 
@@ -22,6 +25,7 @@ void setup()
   size(1000, 1000);
   player = new Player();
   gun = new Gun();
+  
 }
 
 
@@ -122,6 +126,8 @@ void mainMenu()
     text("Press G to start", width/2, height/2);
     text("Press H for High Scores", width/2, height *0.6);
     
+    readFile = 0;
+    
     if(keys['G'])
     {
       gameState = 2;
@@ -144,10 +150,14 @@ void gameOver()
     fill(250);
     textSize(70);
     text("GAME OVER", width/2, height/2);
-    text("Press C to continue", width/2, height * 0.6);
+    text("Score: " + finalScore, width/2, height * 0.6);
+    text("Press C to continue", width/2, height * 0.8);
     
-    input = new Input();
-    input.scoreCheck(finalScore, SCORE_FILE);
+    if(readFile == 0)
+    {
+      input = new Input();
+      readFile = input.scoreCheck(finalScore, SCORE_FILE, readFile);
+    }
     
     //resetting the game 
     score = 0;
@@ -172,6 +182,8 @@ void highScores()
   {
     highScore = new Score();
     highScore.displayScores(SCORE_FILE);
+    //this works
+    //readFile = 0;
   }
    
   if(keys['C'])
