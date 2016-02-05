@@ -38,7 +38,7 @@ class Enemy extends GameCharacter
     }
     pos.x = xVal;
     pos.y = yVal;
-    println("In Enemy Default Constructor");
+    //println("In Enemy Default Constructor");
   }
   
   
@@ -122,4 +122,22 @@ class Enemy extends GameCharacter
     
     return false;
   }
+  
+  float getXLocation()
+  {
+    float locatX = pos.x;
+    return locatX;
+  }
+  
+  float getYLocation()
+  {
+    float locatY = pos.y;
+    return locatY;
+  }
+  //void death()
+  //{
+  //  PImage bloodImg;
+  //  bloodImg = loadImage("blood_splat1.png");
+  //  image(bloodImg, pos.x, pos.y);
+  //}
 }

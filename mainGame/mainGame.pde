@@ -18,7 +18,12 @@ int score;
 int finalScore;
 int readFile = 0;
 int gameState = 0;
-
+boolean canSpawn = true;
+boolean bossSpawn = false;
+int spawnDelay = 0;
+int bossDelay = 0;
+int delayMin = 0;
+int bSpn = 0;
 
 void setup()
 {
@@ -60,43 +65,95 @@ void draw()
     player.update();
     gun.currentGun();
     
-    if(keys[' '])
-    {
-      Enemy enemy= new Enemy();
-      enemies.add(enemy);
-    }
+    ////////////////////////////////////////////////////////////////
+    //enemy spawning
+    ///////////////////////////////////////////////////////////////
     
-    for(Enemy e: enemies)
-    {
-      e.render();
-      e.update();
-    }
+    
+      //println("wave; " + wave + "and j is;" + j);
         
+      if (canSpawn)
+      {
+        
+        Enemy enemy= new Enemy();
+        enemies.add(enemy);
+        canSpawn = false;
+        spawnDelay = 100;
+      }
+      spawnDelay--;
+        
+      //println("spawn delay is; " + spawnDelay);
+      if(spawnDelay <= delayMin)
+      {
+        canSpawn = true;
+      }
+      
+      if(bossSpawn)
+      {
+        SecondEnemy secondenemy= new SecondEnemy();
+        enemies.add(secondenemy);
+        bossSpawn = false;
+        bossDelay = 200;
+      }
+      bossDelay--;
+      
+      if(bossDelay <= delayMin && bSpn == 1)
+      {
+        bossSpawn = true;
+      }
+          
+          
+          
+          
     for(int i = 0 ; i<enemies.size() ; i++)
     {
       Enemy e = (Enemy) enemies.get(i);
       
       if(!e.enemyAlive())
       {
+        //death();
+        //float x = e.getXLocation();
+        //float y = e.getYLocation();
         enemies.remove(i);
+        //death(x, y);
         score = score + 1;
         finalScore = score;
+        
+        float mark = score % 5;
+        if(mark == 1 && delayMin < 80)
+        {
+          //float mark = score % 10;
+          println("mark is " + mark);
+          println("score is " + score);
+          delayMin+=5;
+          println("delay min is: " + delayMin);
+        }
+        
+        if (score == 100)
+        {
+          bSpn = 1;
+        }
+        
+        //add new enemy later
+        //if (score == 250)
+        //{
+        //  sSpn = 1;
+        //}
       }
       
       if(e.touchingPlayer())
       {
         player.health--;
       }
-    }
-    
-    if(keys['I'])
+    }//end for loop
+      
+      
+    for(Enemy e: enemies)
     {
-      SecondEnemy secondenemy= new SecondEnemy();
-      enemies.add(secondenemy);
-      secondenemy.render();
-      secondenemy.update();
+       e.render();
+       e.update();
     }
-    
+
     
     for(Bullet b: bullets)
     {
@@ -110,8 +167,13 @@ void draw()
     {
       gameState = 1;
     }
-  }
-}
+    
+  }//end gamestate if
+  
+  
+  
+  
+}//end draw
 
 
 void mainMenu()
@@ -191,6 +253,14 @@ void highScores()
     gameState = 0;
   }
 }
+
+
+//void death(float x, float y)
+//  {
+//    PImage bloodImg;
+//    bloodImg = loadImage("blood_splat1.png");
+//    image(bloodImg, x, y);
+//  }
     
 //void blood()
 //{
