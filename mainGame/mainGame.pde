@@ -3,6 +3,7 @@ import ddf.minim.*;
 
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+ArrayList<AmmoPickup> pickups = new ArrayList<AmmoPickup>();
 
 
 
@@ -97,7 +98,6 @@ void draw()
 
     if (canSpawn)
     {
-
       Enemy enemy= new Enemy();
       enemies.add(enemy);
       canSpawn = false;
@@ -127,9 +127,6 @@ void draw()
     {
       bossSpawn = true;
     }
-
-
-
 
     for (int i = 0; i<enemies.size(); i++)
     {
@@ -172,6 +169,19 @@ void draw()
         player.health--;
       }
     }//end for loop
+
+    //ammo spawning
+    //
+    //adding the pickups
+    //they need to be created and then colision detected
+    if(frameCount % 1200 == 0)
+    {
+      AmmoPickup ammoPickup = null;
+      ammoPickup = new AmmoPickup();
+      pickups.add(ammoPickup);
+      
+      
+    }
 
 
     for (Enemy e : enemies)
