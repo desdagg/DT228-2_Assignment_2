@@ -6,8 +6,14 @@ class Gun
   int gunType = 1;
   boolean canSwap = true;
   
+  AudioPlayer pistolShot;
+
+  
   Gun()
   {
+   
+    pistolShot = minim.loadFile("pew.wav");
+    
 
   }
   
@@ -42,6 +48,8 @@ class Gun
     text("pistol", width/2, height/9);
     if (mousePressed && canShoot)
       {
+        //pistolShot = minim.loadFile("pew.wav");
+        gunNoise();
         //ad a limit to amount of bullets creatable
         Bullet bullet = new Bullet();
         bullet.pos.x = player.pos.x;
@@ -53,7 +61,7 @@ class Gun
         delay = 0;
       }     
       delay++; 
-      if (delay >= 10)
+      if (delay >= 25)
       {
         canShoot = true;
       }
@@ -110,12 +118,18 @@ class Gun
       delay = 0;  
     }     
     delay++; 
-    if (delay >= 30)
+    if (delay >= 34)
     {
       canShoot = true;
     }
   
-}
+ }
+ 
+ void gunNoise()
+ {
+   pistolShot.rewind();
+   pistolShot.play();
+ }
   
   
 }
