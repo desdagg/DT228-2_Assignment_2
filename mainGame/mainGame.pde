@@ -8,7 +8,7 @@ ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
 
 String SCORE_FILE = "HighScores.csv";
-String PISTOLSHOT = "pew.mp3";
+//String PISTOLSHOT = "pew.mp3";
 String MENU_MUSIC = "game_menu_cut.wav";
 
 Player player;
@@ -17,6 +17,7 @@ Minim minim;
 Score highScore;
 Input input;
 AudioPlayer menuMusic;
+AudioPlayer myMan;
 
 boolean[] keys = new boolean[512];
 PImage startScreen;
@@ -114,6 +115,9 @@ void draw()
     {
       SecondEnemy secondenemy= new SecondEnemy();
       enemies.add(secondenemy);
+      myMan = minim.loadFile("myMan.wav");
+      myMan.rewind();
+      myMan.play();
       bossSpawn = false;
       bossDelay = 200;
     }
@@ -188,6 +192,13 @@ void draw()
     if (!player.playerAlive())
     {
       gameState = 1;
+    }
+    
+    
+    if(keys['P'])
+    {
+      gun.rifleAmmo = 50;
+      gun.shotgunAmmo = 25;
     }
   }//end gamestate if
 }//end draw

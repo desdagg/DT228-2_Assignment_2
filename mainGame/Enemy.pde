@@ -10,7 +10,7 @@ class Enemy extends GameCharacter
   color bodyColour = color(145,200,0);
   int enemyHealth = 1;
 
-
+  AudioPlayer enemyHitNoise;
   
   
   Enemy()
@@ -39,6 +39,7 @@ class Enemy extends GameCharacter
     pos.x = xVal;
     pos.y = yVal;
     //println("In Enemy Default Constructor");
+    enemyHitNoise = minim.loadFile("zombieHit01.wav");
   }
   
   
@@ -97,7 +98,8 @@ class Enemy extends GameCharacter
       //checking the coordinates of the bullet
       if(b.xCor > (pos.x -17) && b.xCor < (pos.x +17) && b.yCor > (pos.y -25) && b.yCor < (pos.y + 25))
       {
-        
+        enemyHitNoise.rewind();
+        enemyHitNoise.play();
         //removing the bullet from the arraylist
         bullets.remove(i);
         enemyHealth--;
