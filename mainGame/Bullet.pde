@@ -47,7 +47,6 @@ class Bullet extends GameCharacter
     for (int i = 0; i<bullets.size(); i++)
     {
       //accessing each individual bullet
-      //Bullet b = (Bullet) bullets.get(i);
       bullets.remove(i);
     }
   }

@@ -6,6 +6,7 @@ class Player extends GameCharacter
   float easing = 0.5f;
   int totalHealth = 300;
   float health = totalHealth;
+  AudioPlayer AmmoEquip;
 
   Player()
   {
@@ -103,9 +104,7 @@ class Player extends GameCharacter
     translate(pos.x, pos.y);
 
     rotate( targetAngle );
-
-
-    //println(pos);
+    
     stroke(0);
     fill(255, 0, 0);
     
@@ -159,11 +158,13 @@ class Player extends GameCharacter
       if(pos.x > a.x && pos.x < a.h && pos.y > a.y && pos.y < (a.y + (height/20)))
      
       {
-        //println("a.x is " + a.x + "a.y is " + a.y + "/n" + " " + pos.x + " " + pos.y);
-        println("a.x is " + a.x + " a.h " + a.h + " pos x is " + pos.x);
-        //i should add a noise
         pickups.remove(i);
+        AmmoEquip = minim.loadFile("AmmoEquip.wav");
+        AmmoEquip.setGain(-20.0);
+        AmmoEquip.rewind();
+        AmmoEquip.play();
         gun.rifleAmmo = 50;
+        gun.shotgunAmmo = 25;
       }
     }
   }//end gotAmmo

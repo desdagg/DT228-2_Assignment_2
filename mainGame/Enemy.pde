@@ -38,8 +38,7 @@ class Enemy extends GameCharacter
     }
     pos.x = xVal;
     pos.y = yVal;
-    //println("In Enemy Default Constructor");
-    enemyHitNoise = minim.loadFile("zombieHit01.wav");
+    enemyHitNoise = minim.loadFile("zombieHit02.wav");
   }
   
   
@@ -81,7 +80,6 @@ class Enemy extends GameCharacter
   
     //hitbox
     noFill();
-    //rect(p-27, p-25, 34, 50);
     popMatrix();
   }
  
@@ -136,10 +134,4 @@ class Enemy extends GameCharacter
     float locatY = pos.y;
     return locatY;
   }
-  //void death()
-  //{
-  //  PImage bloodImg;
-  //  bloodImg = loadImage("blood_splat1.png");
-  //  image(bloodImg, pos.x, pos.y);
-  //}
 }

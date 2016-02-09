@@ -14,7 +14,7 @@ class Input
   
   int scoreCheck(int score, String Score_File, int readFile)
   {
-    println("your score was: " + score);
+    //println("your score was: " + score);
     //reading the data in to the array lines[]
     String lines[] = loadStrings(Score_File);
     
@@ -82,8 +82,9 @@ class Input
 
 
 
-
-
+/////////////////////////////////////////////////////////////////////////////////////
+//This is code i found on stack overflow for implementing a popup box to imput text//
+/////////////////////////////////////////////////////////////////////////////////////
 
 /*
 import javax.swing.*; 

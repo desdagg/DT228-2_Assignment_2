@@ -9,7 +9,7 @@ class Gun
   boolean hasShtgunAmmo = false;
   
   int rifleAmmo = 0;
-  int shotgunAmmo = 25;
+  int shotgunAmmo = 0;
   
   AudioPlayer pistolShot;
   AudioPlayer shotgunShot;
@@ -27,12 +27,11 @@ class Gun
   {
     if(keys['R'] && canSwap)
     {
-      println("guntype is " + gunType);
+      //println("guntype is " + gunType);
       gunType++;
       if(gunType == 3)
       {
         gunType = 0;
-        //canSwap = false;
       }
       canSwap = false;
       swapDelay = 0;
@@ -65,10 +64,8 @@ class Gun
     if (mousePressed && canShoot)
       {
         pistolShot.rewind();
-        pistolShot.play();
-        //pistolShot = minim.loadFile("pew.wav");
-        //gunNoise();
-        //ad a limit to amount of bullets creatable
+        pistolShot.play();;
+
         Bullet bullet = new Bullet();
         bullet.pos.x = player.pos.x;
         bullet.pos.y = player.pos.y;
@@ -109,7 +106,7 @@ class Gun
       float c = 1.29;
       float d = 1.71;
       float e = 1.85;
-      //ad a limit to amount of bullets creatable
+
       Bullet bullet1 = new Bullet();
       bullet1.pos.x = player.pos.x;
       bullet1.pos.y = player.pos.y;
@@ -173,13 +170,12 @@ class Gun
     {
       hasRifleAmmo = true;
     }
+    
     if (mousePressed && canShoot && hasRifleAmmo)
-      {
+    {
         rifleShot.rewind();
         rifleShot.play();
-        //pistolShot = minim.loadFile("pew.wav");
-        //gunNoise();
-        //ad a limit to amount of bullets creatable
+
         Bullet bullet = new Bullet();
         bullet.pos.x = player.pos.x;
         bullet.pos.y = player.pos.y;
@@ -193,19 +189,12 @@ class Gun
         {
           hasRifleAmmo = false;
         }
-      }     
-      delay++; 
-      if (delay >= 5)
-      {
-        canShoot = true;
-      }
+    } 
+    
+    delay++; 
+    if (delay >= 5)
+    {
+      canShoot = true;
+    }
   }
- 
- //void gunNoise()
- //{
- //  pistolShot.rewind();
- //  pistolShot.play();
- //}
-  
-  
 }

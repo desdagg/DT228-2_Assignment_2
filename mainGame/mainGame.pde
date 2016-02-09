@@ -9,7 +9,6 @@ ArrayList<AmmoPickup> pickups = new ArrayList<AmmoPickup>();
 
 
 String SCORE_FILE = "HighScores.csv";
-//String PISTOLSHOT = "pew.mp3";
 String MENU_MUSIC = "game_menu_cut.wav";
 
 Player player;
@@ -22,6 +21,7 @@ AudioPlayer myMan;
 
 boolean[] keys = new boolean[512];
 PImage startScreen;
+PImage InstructionsScreen;
 PImage bloodSplat;
 int score;
 int finalScore;
@@ -46,7 +46,7 @@ void setup()
   
 
   canPlay = true;
-  println("can play is " + canPlay);
+  //println("can play is " + canPlay);
   bossSpawn = false;
   spawnDelay = 0;
   bossDelay = 0;
@@ -72,7 +72,7 @@ void draw()
   mainMenu();
   gameOver();
   highScores();
-
+  instructions();
 
   if (gameState == 2)
   { 
@@ -103,7 +103,6 @@ void draw()
     }
     spawnDelay--;
 
-    //println("spawn delay is; " + spawnDelay);
     if (spawnDelay <= delayMin)
     {
       canSpawn = true;
@@ -132,26 +131,20 @@ void draw()
 
       if (!e.enemyAlive())
       {
-        //death();
-        //float x = e.getXLocation();
-        //float y = e.getYLocation();
         enemies.remove(i);
-        //death(x, y);
         score = score + 1;
         finalScore = score;
 
         float mark = score % 5;
         if (mark == 1 && delayMin < 80)
         {
-          //float mark = score % 10;
-          println("mark is " + mark);
-          println("score is " + score);
-          delayMin+=5;
-          println("delay min is: " + delayMin);
+          //adding 10 to the minimum delay to increase the spawn rate
+          delayMin+=10;
+          //println("delay min is: " + delayMin);
         }
 
         //checking if the score is high enough and allowing secondEnemy to spawn
-        if (score == 100)
+        if (score == 50)
         {
           bSpn = 1;
         }
@@ -162,14 +155,12 @@ void draw()
         player.health--;
       }
     }//end for loop
-
+    
+    ////////////////////////////////////////////////////////////////
     //ammo spawning
-    //
-    //adding the pickups
-    //they need to be created and then colision detected
-    if(frameCount % 600 == 0)
+    if(frameCount % 1200 == 0)
     {
-      println("ammo drop");
+      //println("ammo drop");
       AmmoPickup ammoPickup = null;
       ammoPickup = new AmmoPickup();
       pickups.add(ammoPickup);      
@@ -211,19 +202,18 @@ void draw()
 
 /////////////////////////////////////////////////////////////////////////
 //the main menu 
-
+////////////////////////////////////////////////////////////////////////
 void mainMenu()
 {
   if (gameState == 0)
   {
     startScreen = loadImage("startScreen.jpg");
-    //
-    //println("can play check" + canPlay);
     
     //playing the main menu music
     if (canPlay)
     {
       menuMusic = minim.loadFile(MENU_MUSIC);
+      menuMusic.setGain(-20.0);
       menuMusic.play();
       menuMusic.loop();
       canPlay = false;
@@ -235,7 +225,7 @@ void mainMenu()
     textAlign(CENTER);
     text("Press G to start", width/2, height/2);
     text("Press H for High Scores", width/2, height *0.6);
-
+    text("Press P for Instructions", width/2, height *0.7);
     readFile = 0;
 
     if (keys['G'])
@@ -247,16 +237,21 @@ void mainMenu()
     {
       gameState = 3;
     }
+    
+    if (keys['P'])
+    {
+      gameState = 4;
+    }
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 //game over screen
+////////////////////////////////////////////////////////////////////////
 void gameOver()
 {
   if (gameState == 1)
   {
-    //finalScore = score;
     //load the background and text
     background(startScreen);
     fill(250);
@@ -279,6 +274,10 @@ void gameOver()
     {
       enemies.remove(i);
     }
+    for (int i = 0; i<pickups.size(); i++)
+    {
+      pickups.remove(i);
+    }
     mainMenu();
     setup();
     
@@ -289,8 +288,9 @@ void gameOver()
   }
 }
 
-//////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 //high score screen
+////////////////////////////////////////////////////////////////////////
 void highScores()
 {
   //load the hich score class to load the file
@@ -298,8 +298,6 @@ void highScores()
   {
     highScore = new Score();
     highScore.displayScores(SCORE_FILE);
-    //this works
-    //readFile = 0;
   }
 
   if (keys['C'])
@@ -308,15 +306,20 @@ void highScores()
   }
 }
 
-
-//void death(float x, float y)
-//  {
-//    PImage bloodImg;
-//    bloodImg = loadImage("blood_splat1.png");
-//    image(bloodImg, x, y);
-//  }
-
-//void blood()
-//{
-//  bloodSplat = loadImage("blood_splat1.png");
-//}
+////////////////////////////////////////////////////////////////////////
+//show the instructions
+////////////////////////////////////////////////////////////////////////
+void instructions()
+{
+  
+  if(gameState == 4)
+  {
+    InstructionsScreen = loadImage("Instructions.jpg");
+    background(InstructionsScreen);
+    text("Press C to go back", width/2, height * 0.9);
+    if (keys['C'])
+    {
+      gameState = 0;
+    }
+  }
+}
