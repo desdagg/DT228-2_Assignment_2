@@ -87,14 +87,12 @@ void draw()
     player.showStats();
     player.render();
     player.update();
+    player.gotAmmo();
     gun.currentGun();
 
     ////////////////////////////////////////////////////////////////
     //enemy spawning
     ///////////////////////////////////////////////////////////////
-
-
-    //println("wave; " + wave + "and j is;" + j);
 
     if (canSpawn)
     {
@@ -152,16 +150,11 @@ void draw()
           println("delay min is: " + delayMin);
         }
 
+        //checking if the score is high enough and allowing secondEnemy to spawn
         if (score == 100)
         {
           bSpn = 1;
         }
-
-        //add new enemy later
-        //if (score == 250)
-        //{
-        //  sSpn = 1;
-        //}
       }
 
       if (e.touchingPlayer())
@@ -174,13 +167,24 @@ void draw()
     //
     //adding the pickups
     //they need to be created and then colision detected
-    if(frameCount % 1200 == 0)
+    if(frameCount % 600 == 0)
     {
+      println("ammo drop");
       AmmoPickup ammoPickup = null;
       ammoPickup = new AmmoPickup();
-      pickups.add(ammoPickup);
-      
-      
+      pickups.add(ammoPickup);      
+    }
+    
+    for(AmmoPickup a : pickups)
+    {
+      a.render();
+      a.update();
+    }
+    
+    if(keys['P'])
+    {
+      gun.rifleAmmo = 50;
+      gun.shotgunAmmo = 25;
     }
 
 
@@ -193,7 +197,6 @@ void draw()
 
     for (Bullet b : bullets)
     {
-
       b.update();
       b.render();
     }
@@ -202,14 +205,7 @@ void draw()
     if (!player.playerAlive())
     {
       gameState = 1;
-    }
-    
-    
-    if(keys['P'])
-    {
-      gun.rifleAmmo = 50;
-      gun.shotgunAmmo = 25;
-    }
+    }  
   }//end gamestate if
 }//end draw
 
@@ -222,15 +218,17 @@ void mainMenu()
   {
     startScreen = loadImage("startScreen.jpg");
     //
-    println("can play check" + canPlay);
+    //println("can play check" + canPlay);
+    
+    //playing the main menu music
     if (canPlay)
     {
       menuMusic = minim.loadFile(MENU_MUSIC);
       menuMusic.play();
+      menuMusic.loop();
       canPlay = false;
     }
-    //menuMusic.loop();
-    //
+
     background(startScreen);
     fill(250);
     textSize(50);

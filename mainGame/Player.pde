@@ -151,5 +151,20 @@ class Player extends GameCharacter
     return true;
   }
   
-
+  void gotAmmo()
+  {
+    for(int i = 0 ; i < pickups.size() ; i++)
+    {
+      AmmoPickup a = (AmmoPickup) pickups.get(i);
+      if(pos.x > a.x && pos.x < a.h && pos.y > a.y && pos.y < (a.y + (height/20)))
+     
+      {
+        //println("a.x is " + a.x + "a.y is " + a.y + "/n" + " " + pos.x + " " + pos.y);
+        println("a.x is " + a.x + " a.h " + a.h + " pos x is " + pos.x);
+        //i should add a noise
+        pickups.remove(i);
+        gun.rifleAmmo = 50;
+      }
+    }
+  }//end gotAmmo
 }
